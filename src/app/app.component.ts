@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {CurrentItems} from './commons/current-items.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private _router: Router, private _items: CurrentItems) {
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        console.log('URL: ' + event.url);
+      }
+    });
+  }
 }

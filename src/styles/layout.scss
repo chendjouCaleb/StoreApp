@@ -1,0 +1,58 @@
+
+#wrapper {
+  height: 100vh;
+  background: #fafafa;
+}
+
+#navbar {
+  background: darken(map_get($theme-colors, "dark"), 10%);
+}
+
+#content {
+  background: #ff6d37;
+  width: 100%;
+  position: absolute;
+  top: 62.25px;
+  bottom: 0;
+}
+
+#content #sidebar {
+  width: 250px;
+  height: 100%;
+  background: map_get($theme-colors, "dark");;
+  position: absolute;
+  top:0;
+  left: 0;
+  transition: all .3s;
+}
+
+#content #main-content {
+  position: absolute;
+  top:0;
+  left: 250px;
+  right: 0;
+  height: 100%;
+  overflow-y: scroll;
+  background: #fafafa;
+  transition: all .3s;
+}
+
+#content #sidebar.visible {
+  left: -250px;
+}
+#content #main-content.all-width {
+  left: 0;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+
+  display: block;
+  color: #FFFFFF;
+}
+
+#sidebar ul li a:hover {
+  background: darken(map_get($theme-colors, "dark"), 10%);
+  text-decoration: none;
+}
+

@@ -1,0 +1,126 @@
+
+
+body, html {
+    height: 100%;
+    font-weight: 400;
+  font-style: normal;
+    font-size: 14px;
+}
+.text-small{
+  font-size: $small-font-size;
+}
+.container-fluid {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+
+}
+
+.bg-light {
+    background-color: #FFF !important;
+}
+
+.btn {
+  font-weight: 500;
+}
+
+.btn, .form-control, button {
+    outline: 0 !important;
+  border-radius: 2px;
+  }
+  .btn.active.focus, .btn.active:focus,
+  .btn.focus, .btn.focus:active,
+  .btn:active:focus, .btn:focus
+
+  {
+    outline: 0 !important;
+    outline-offset: 0  !important;
+    background-image: none  !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none  !important;
+  }
+
+
+  .form-control.active.focus, .form-control.active:focus,
+  .form-control.focus, .form-control.focus:active,
+  .form-control:active:focus, .form-control:focus
+  {
+    outline: 0 !important;
+    outline-offset: 0  !important;
+    background-image: none  !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none  !important;
+  }
+
+  .form-group > * {
+      width: 100%;
+  }
+
+  input.ng-dirty.ng-invalid{
+    border-color: #e81b58;
+}
+
+input.ng-dirty.ng-valid{
+    border-color: #00af60;
+}
+
+.line-h-50 {
+    line-height: 50px;
+}
+.h-50 {
+    height: 50px;
+}
+
+.btn-circle{
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 50%;
+}
+.square-50{
+  width: 50px;
+  height: 50px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn-default{
+  color: #1d1d1d;
+  background-color: #EEE;
+}
+
+.border-bottom-1{ border-bottom-width: 1px !important;}
+.border-bottom-2{ border-bottom-width: 2px !important;}
+.border-bottom-3{ border-bottom-width: 3px !important;}
+.border-bottom-4{ border-bottom-width: 4px !important;}
+.border-bottom-5{ border-bottom-width: 5px !important;}
+
+.border-1{ border-width: 1px !important;}
+.border-2{ border-width: 2px !important;}
+.border-3{ border-width: 3px !important;}
+.border-4{ border-width: 4px !important;}
+.border-5{ border-width: 5px !important;}
+
+.form-group label {
+  font-weight: 500;
+}
+.tab-active-link {
+  border-bottom: 3px solid $link-color;
+}
+
+.table td {
+  font-family: 'segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.modal-content {
+  border-radius: 1px;
+}
+
+.large-modal {
+  width: 90%;
+}

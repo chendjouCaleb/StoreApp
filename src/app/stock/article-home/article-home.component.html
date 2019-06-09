@@ -1,0 +1,80 @@
+<app-layout [title]="'Articles'">
+  <div class="col-12 border-bottom " style="font-size: large">
+    <button class="btn" (click)="back()">
+      <i class="mdi mdi-arrow-left mdi-24px"></i>
+    </button>
+
+    <a routerLink="/articles/list">Articles</a> /
+    {{article?.name }}
+  </div>
+
+  <div class="col-12 row mt-3">
+    <div class="col-4">
+      <img [src]="article?.image" alt="" class="img-fluid">
+    </div>
+    <div class="col-6">
+      <h1 class="font-weight-bold">{{article.name}}
+        <button class="btn btn-info btn-sm  ml-5" (click)="cart.addItem(article)">
+          <i class="mdi mdi-cart-plus mdi-18px"></i>
+          <span class="ml-1" *ngIf="article.countInCart">{{article.countInCart}}</span>
+        </button>
+      </h1>
+      <div class="col-12 px-0 mt-4">
+        <h5>Reference</h5>
+        <h4 class="font-weight-bold">{{article.reference}}</h4>
+      </div>
+
+      <div class="col-12 px-0 mt-4">
+        <h5>Quantité en stock</h5>
+        <h4 class="font-weight-bold">{{article.quantity}}
+          <button class="btn btn-outline-info p-0 ml-3 btn-circle" (click)=" addQuantity()">
+            <i class="mdi mdi-plus mdi-24px"></i>
+          </button>
+          <button class="btn btn-outline-danger ml-3 btn-circle p-0" (click)="minusQuantity()">
+            <i class="mdi mdi-minus mdi-24px"></i>
+          </button>
+        </h4>
+      </div>
+
+      <div class="col-12 px-0 mt-4 row">
+        <div class="col-6 ">
+          <h5>Prix d'achat</h5>
+          <h4 class="font-weight-bold">{{article.buyingPrice | price}}</h4>
+        </div>
+
+        <div class="col-6 px-0">
+          <h5>Prix d'achat total</h5>
+          <h4 class="font-weight-bold">{{article.buyingPrice * article.quantity | price}}
+          </h4>
+        </div>
+
+      </div>
+
+
+      <div class="col-12 px-0 mt-4 row">
+        <div class="col-6 ">
+          <h5>Prix de vente</h5>
+          <h4 class="font-weight-bold">{{article.sellingPrice | price}}</h4>
+        </div>
+
+        <div class="col-6 px-0">
+          <h5>Prix d'achat total</h5>
+          <h4 class="font-weight-bold">{{article.sellingPrice * article.quantity | price}}</h4>
+        </div>
+
+      </div>
+
+      <div class="col-12 px-0 mt-5">
+        <button class="btn btn-outline-info" (click)="openEditArticleModal()">
+          <i class="mdi mdi-update"></i> Modifier l'article
+        </button>
+        <button class="btn btn-outline-danger ml-5" (click)="openDeleteArticleModal()">
+          <i class="mdi mdi-delete-forever"></i> Supprimer l'article
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+
+</app-layout>

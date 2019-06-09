@@ -1,0 +1,10 @@
+<div class="col">
+  <h3 class="col px-0 py-3">Supprimer un article</h3>
+
+  <h5 class="text-danger"> Voulez vous supprimer l'article {{article.name }}</h5>
+
+  <div class="text-right py-3 ">
+    <button class="btn btn-default" (click)="modal.close()">Annuler</button>
+    <button class="btn btn-danger ml-3"  (click)="deleteArticle()"><i class="mdi mdi-delete-forever"></i> Supprimer</button>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="col">
+  <h3 class="col px-0 py-3">Ajouter un article</h3>
+
+  <form [formGroup]="form" class="mt-3">
+
+    <div class="form-group">
+      <label for="name">Nom de l'article</label>
+      <input id="name" name="name" class="form-control" formControlName="name">
+      <app-control-error [control]="form.controls['name']"></app-control-error>
+    </div>
+
+    <div class="form-group">
+      <label for="reference">Numéro de reférence</label>
+      <input id="reference" name="reference" class="form-control" formControlName="reference">
+      <app-control-error [control]="form.controls['reference']"></app-control-error>
+      <span class="mt-2 text-small">Le numéro de référence permet d'indentifier l'article de façon unique.
+       Aussi bien dans l'application que sur le marché réel.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity" >Quantité initial en stock</label>
+      <input id="quantity" name="quantity" class="form-control" formControlName="quantity">
+      <app-control-error [control]="form.controls['quantity']"></app-control-error>
+    </div>
+
+    <div class="form-group">
+      <label for="buyingPrice">Prix d'achat</label>
+      <input id="buyingPrice" name="buyingPrice" class="form-control" formControlName="buyingPrice">
+      <app-control-error [control]="form.controls['buyingPrice']"></app-control-error>
+    </div>
+
+    <div class="form-group">
+      <label for="sellingPrice">Prix de vente</label>
+      <input id="sellingPrice" name="sellingPrice" class="form-control" formControlName="sellingPrice">
+      <app-control-error [control]="form.controls['sellingPrice']"></app-control-error>
+    </div>
+
+
+    <div class="text-right py-3 ">
+      <button class="btn btn-danger" (click)="modal.close()">Annuler</button>
+      <button class="btn btn-info ml-3" [disabled]="form.invalid" (click)="add()"><i class="mdi mdi-plus"></i> Ajouter</button>
+    </div>
+  </form>
+</div>

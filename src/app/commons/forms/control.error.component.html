@@ -1,0 +1,7 @@
+<div  style="font-size: 11px" class="text-danger col-12 px-0 mx-0" *ngIf="control.dirty && control.invalid">
+  [{{control.getErrorMessages().length}}]
+  <div *ngFor="let error of control.getErrorMessages()" class="col-12 px-0 mx-0">
+    &#8226;
+     {{error}}
+  </div>
+</div>

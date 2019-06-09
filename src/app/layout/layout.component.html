@@ -1,0 +1,48 @@
+<div id="wrapper">
+  <nav class="navbar navbar-dark text-light" id="navbar">
+    <span class="navbar-brand text-light " style="line-height: 30px; font-size: 22px;">
+      <button class="btn" (click)="toggle()">
+        <i class="mdi text-light" [class.mdi-menu]="visible" [class.mdi-close]="!visible"
+           style="transition: all .3s; font-size: 24px; line-height: 30px;"></i>
+      </button>
+      Store</span>
+
+    <div class="h-100" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+      <div class=" my-2 my-lg-0" (click)="processCart()">
+        <app-cart-bar></app-cart-bar>
+      </div>
+    </div>
+  </nav>
+
+  <div id="content">
+    <nav id="sidebar" [class.visible]="visible">
+      <ul class="list-unstyled">
+        <li>
+          <a routerLink="/articles/list">Stock</a>
+        </li>
+        <li>
+          <a routerLink="/users/list">Users</a>
+        </li>
+        <li>
+          <a routerLink="/customers/list">Clients</a>
+        </li>
+        <li>
+          <a href="#">Ventes</a>
+        </li>
+
+        <li>
+          <a href="#">Données</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="main-content" [class.all-width]="visible" class="p-0">
+      <ng-content>
+
+      </ng-content>
+    </div>
+  </div>
+</div>
