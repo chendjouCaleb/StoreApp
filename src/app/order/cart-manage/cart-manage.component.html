@@ -1,0 +1,47 @@
+<div class="col-12 my-3">
+  <h3 class="mb-3 pb-3 border-bottom">Gérer la commande</h3>
+
+  <div class="col-12 row">
+    <div class="col-6 px-0">
+      <h5 class="col-12 px-0">Choisir le client    <b>ou</b>
+        <a href="#" class="ml-3" (click)="addCustomer()">
+          Ajouter un client
+        </a>
+      </h5>
+      <div class="col-12 px-0">
+          <app-customer-search (choose)="chooseCustomer($event)"></app-customer-search>
+      </div>
+
+      <div class="col-12 mt-3" *ngIf="cart.customer">
+        <app-customer-item [customer]="cart.customer"></app-customer-item>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="col-12 px-0">
+        <h5>Paiement initial : </h5>
+        <input class="form-control" type="number" [(ngModel)]="cart.payment">
+        <h5 class="mt-2"><span [class.text-danger]="cart.payment != cart.price"
+                              [class.text-success]="cart.payment == cart.price">{{cart.payment | price}}</span>
+          / {{cart.price | price}}</h5>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-12 px-0 mt-5" >
+    <app-cart-item [cart]="cart"></app-cart-item>
+  </div>
+
+
+  <div class="col-12 text-right mt-5 px-0">
+    <button class="btn btn-default mr-3" (click)="modal.close()"><i class="mdi mdi-close"></i> Fermer</button>
+    <button class="btn btn-danger mr-3" (click)="clear()"><i class="mdi mdi-delete-forever"></i> Effacer la commande
+    </button>
+    <button class="btn btn-info mr-3" (click)="addOrderModal()"><i class="mdi mdi-check"></i> Passer la commande
+    </button>
+  </div>
+</div>
+
+
+

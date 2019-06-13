@@ -1,6 +1,7 @@
 import {ipcMain, IpcMain} from 'electron';
 import {Repository} from 'typeorm';
 import {Article} from '../models/article';
+import {cr} from '@angular/core/src/render3';
 
 export class ArticleRepository<T> {
   constructor(private _ipc: IpcMain, private _repository: Repository<T>, private _resource: string) {  }
@@ -12,6 +13,7 @@ export class ArticleRepository<T> {
         console.log('find article ' + articles.length);
         event.returnValue = articles;
       } catch (err) {
+        event.returnValue = err;
         throw err;
       }
     });
@@ -22,6 +24,7 @@ export class ArticleRepository<T> {
         console.log('save item');
         console.log(_item);
       } catch (err) {
+        event.returnValue = err;
         throw err;
       }
     });
@@ -32,6 +35,7 @@ export class ArticleRepository<T> {
         console.log('update item');
         console.log(event.returnValue);
       } catch (err) {
+        event.returnValue = err;
         throw err;
       }
     });
@@ -41,15 +45,17 @@ export class ArticleRepository<T> {
         event.returnValue = await this._repository.remove(_item);
         console.log('delete item');
       } catch (err) {
+        event.returnValue = err;
         throw err;
       }
     });
 
-    ipcMain.on(`${this._resource}/find`, async (event: any, criteria: {}) => {
+    ipcMain.on(`${this._resource}/find`, async (event: any, criteria: {}, relations) => {
       try {
-        const articles = await this._repository.find(criteria);
+        const articles = await this._repository.find({where: criteria, relations: relations});
         event.returnValue = articles;
       } catch (err) {
+        event.returnValue = err;
         throw err;
       }
     });

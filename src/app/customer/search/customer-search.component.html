@@ -1,0 +1,14 @@
+<div class="col-12 px-0">
+  <input type="search" class="form-control col-12" style="width: 99%"
+         autocomplete="false" (keyup)="search($event.target.value)" [(ngModel)]="keyword"
+         placeholder="entrer le nom, le téléphone ou le numéro d'identité du client">
+
+  <div class="col-12 position-absolute border bg-light px-0 " *ngIf="list.size > 0"
+       style="z-index: 10; max-height: 350px; overflow: hidden; transition: all .3s">
+    <div class="col-12 py-2 bg-default-hover row px-0 mx-0 cursor-pointer" *ngFor="let customer of list"
+         (click)="emitChoose(customer)">
+      <app-customer-item [customer]="customer"></app-customer-item>
+    </div>
+
+  </div>
+</div>

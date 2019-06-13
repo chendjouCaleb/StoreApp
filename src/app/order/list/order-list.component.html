@@ -1,0 +1,30 @@
+<app-layout [title]="'Commande'">
+
+  <h3 class="col-12 px-0 py-3">Commande</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Prix total</th>
+        <th>Paiement initial</th>
+        <th>Paiement restant</th>
+        <th>Client</th>
+        <td></td>
+      </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td> {{order.id}}</td>
+      <td>{{order.price | price}}</td>
+      <td>{{order.payment | price}}</td>
+      <td>{{(order.price - order.payment) | price}}</td>
+      <td> {{order.customer?.name}} {{order.customer?.surname}} </td>
+      <td>
+        <a [routerLink]="['/orders', order.id, 'home']">Plus de détails</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</app-layout>

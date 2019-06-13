@@ -1,0 +1,35 @@
+<div class="col-12 my-3">
+  <h3 class="mb-3 pb-3 border-bottom">Gérer la commande</h3>
+
+  <div class="col-12 row">
+    <div class="col-6 px-0">
+      <div class="col-12 " *ngIf="order.customer">
+        <app-customer-item [customer]="order.customer"></app-customer-item>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="col-12 px-0">
+        <h5>Paiement initial : </h5>
+        <h5 class="mt-2"><span [class.text-danger]="order.payment != order.price"
+                               [class.text-success]="order.payment == order.price">{{order.payment | price}}</span>
+          / {{order.price | price}}</h5>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-12 px-0 mt-5" >
+    <app-order-item [order]="order"></app-order-item>
+  </div>
+
+
+  <div class="col-12 text-right mt-5 px-0">
+    <button class="btn btn-default mr-3" (click)="modal.close()"><i class="mdi mdi-close"></i> Fermer</button>
+    <button class="btn btn-info mr-3" (click)="process()"><i class="mdi mdi-check"></i> Effectuer la commande
+    </button>
+  </div>
+</div>
+
+
+

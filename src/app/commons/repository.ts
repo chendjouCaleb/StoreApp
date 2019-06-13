@@ -12,15 +12,15 @@ export abstract class Repository<T> {
 
   abstract anyToType(value: any): T ;
 
-  list(): List<T> {
-    const result = this._electron.ipcRenderer.sendSync(`${this.resource}/list`) as Array<T>;
+  list(criteria = {}, relations = []): List<T> {
+    const result = this._electron.ipcRenderer.sendSync(`${this.resource}/find`, criteria, relations) as Array<T>;
     const items = new List<T>();
     result.forEach(item => items.add(this.anyToType(item)));
     return items;
   }
 
-  findById(id: number): T {
-    const articles = this._electron.ipcRenderer.sendSync(`${this.resource}/find`, {id: id});
+  findById(id: number, relations = []): T {
+    const articles = this._electron.ipcRenderer.sendSync(`${this.resource}/find`, {id: id}, relations);
     if (articles.length === 0) {
       return null;
     }
@@ -29,6 +29,7 @@ export abstract class Repository<T> {
 
   add(item: T): T {
     const result = this._electron.ipcRenderer.sendSync(`${this.resource}/add`, item);
+    console.log(result);
     return this.anyToType(result);
   }
 

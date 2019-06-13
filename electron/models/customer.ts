@@ -5,7 +5,8 @@
  * @version 1
  * @since 07-06-2019
  */
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Order} from './order';
 
 @Entity()
 export class Customer {
@@ -24,6 +25,9 @@ export class Customer {
   @Column()
   nationalId: string;
 
-  @Column({type: 'date'})
-  registrationDate = Date.now();
+  @CreateDateColumn()
+  registrationDate: Date;
+
+  @OneToMany(type => Order, order => order.customer)
+  orders: Order[];
 }

@@ -79,4 +79,17 @@ export class Article {
   get totalSellingPrice(): number {
     return this.sellingPrice * this.quantity;
   }
+
+  static anyToType(item: any): Article {
+    const article = new Article();
+    article.countInCart = 0;
+    article.sellingPrice = item.sellingPrice;
+    article.buyingPrice = item.buyingPrice;
+    article.id = item.id;
+    article.quantity = item.quantity;
+    article.name = item.name;
+    article.reference = item.reference;
+
+    return article;
+  }
 }

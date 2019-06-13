@@ -1,17 +1,17 @@
 <div class="col-12 row px-0">
   <div class="col-3">
     <h5 class="col-12">Nombre d'article</h5>
-    <h3 class="col-12 text-info">{{cart.size}}</h3>
+    <h3 class="col-12 text-info">{{order.size}}</h3>
   </div>
 
   <div class="col-3">
     <h5 class="col-12">Quantité total</h5>
-    <h3 class="col-12 text-info">{{cart.itemCount}}</h3>
+    <h3 class="col-12 text-info">{{order.itemCount}}</h3>
   </div>
 
   <div class="col-6">
     <h5 class="col-12">Prix total</h5>
-    <h3 class="col-12 text-info">{{cart.price | price}}</h3>
+    <h3 class="col-12 text-info">{{order.price | price}}</h3>
   </div>
 </div>
 <table class="table table-striped text-right mt-3">
@@ -21,30 +21,21 @@
     <th scope="col">Nom</th>
     <th scope="col">Reference</th>
     <th scope="col">Quantité</th>
-    <th scope="col">Quantité disponible</th>
     <th scope="col">Prix unitaire</th>
     <th scope="col">Prix total</th>
-    <th scope="col"></th>
   </tr>
   </thead>
   <tbody>
 
-  <tr *ngFor="let item of cart; let i = index">
+  <tr *ngFor="let item of order; let i = index">
     <td>{{i}}</td>
     <td>{{item.article.name}}</td>
     <td>{{item.article.reference}}</td>
     <td>
-      <input class="form-control text-right" type="number" name="quantity" [(ngModel)]="item.quantity"
-             (keyup)="updateQuantity(item, $event.target.value)" (change)="updateQuantity(item, $event.target.value)">
+      {{ item.quantity }}
     </td>
-    <td>{{item.article.quantity}}</td>
     <td>{{item.price}}</td>
     <td>{{item.totalPrice | price}} </td>
-
-    <td>
-      <button class="btn btn-danger btn-circle p-0" (click)="cart.remove(item)">
-        <i class="mdi mdi-delete"></i> </button>
-    </td>
 
   </tr>
   </tbody>

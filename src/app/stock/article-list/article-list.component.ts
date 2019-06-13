@@ -1,12 +1,10 @@
 import {Component} from '@angular/core';
-import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ArticleAddComponent} from '../article-add/article-add.component';
 import {AlertEmitter} from '../../commons/alert.emitter';
 import {ArticleRepository} from '../article.repository';
 import {Article} from '../../models/article';
 import {List} from '@everest/collections';
-import {ArticleSQLRepository} from '../article-SQLRepository';
-import {ElectronService} from 'ngx-electron';
 import {StockSummary} from '../../models/stock-summary';
 import {Cart} from '../../cart/cart';
 
@@ -23,6 +21,13 @@ export class ArticleListComponent {
     this.articles = this.articleRepository.list();
     this.summary = new StockSummary(this.articles);
     this.summary.compute();
+
+    for (const item of this.cart) {
+      const article = this.articles.find(a => a.id === item.article.id);
+      if (article) {
+        article.countInCart = item.quantity;
+      }
+    }
   }
 
   openAddArticleModal() {

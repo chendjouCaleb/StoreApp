@@ -17,6 +17,12 @@ export class ArticleHomeComponent {
   constructor(private _items: CurrentItems, private _ngbModal: NgbModal, public cart: Cart) {
     this.article = this._items.find('article');
     this.article.image = 'assets/default-article.jpg';
+
+    const inCart = this.cart.find(a => a.article.id === this.article.id);
+
+    if (inCart) {
+      this.article.countInCart = inCart.quantity;
+    }
   }
 
   back() {

@@ -1,0 +1,80 @@
+<app-layout [title]="'Commande n° ' + order.id">
+  <div class="col-12 border-bottom " style="font-size: large">
+  <button class="btn" (click)="back()">
+    <i class="mdi mdi-arrow-left mdi-24px"></i>
+  </button>
+
+  <a routerLink="/orders/list">Commandes</a> /
+    Commande n° {{order?.id }}
+  </div>
+
+  <div class="col-6 mt-3">
+    <h3 class="col-12 mb-0 pb-0">Commande n° {{order?.id }}. </h3>
+    <div class="col-12 text-small mt-0 pt-0">{{order.registrationDate | amCalendar}}</div>
+  </div>
+
+  <div class="col-12">
+    <div class="col-6 mt-3">
+      <h5>Client</h5>
+      <h4 class="text-info">
+        <a routerLink="/customers/{{order.customer?.id}}/home">{{order.customer?.name}} {{order.customer?.surname}}</a>
+      </h4>
+    </div>
+
+
+    <div class="col-6 mt-4">
+      <h5>Prix de la commande</h5>
+      <h4 class="font-weight-bold text-info">{{order.price | price}}</h4>
+    </div>
+
+    <div class="col-6 mt-4">
+      <h5>Paiement Initial</h5>
+      <h4 class="font-weight-bold text-info">{{order.payment | price}}</h4>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-12 mt-3">
+    <label for="paymentAmount" class="font-weight-bold">Nouveau paiement</label>
+
+    <div class="input-group">
+      <input id="paymentAmount" name="paymentAmount" class="form-control" type="number" [(ngModel)]="paymentAmount">
+      <button class="btn btn-info input-group-btn ml-1" (click)="paymentModal()" [disabled]="paymentAmount <= 0">
+        <i class="mdi mdi-plus"></i></button>
+    </div>
+  </div>
+
+
+  <div class="col-12 mt-4">
+    <h4 class="col-12">Articles de la commande</h4>
+    <div class="col-12">
+      <table class="col-12 table table-striped text-right mt-3">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Reference</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Prix unitaire</th>
+          <th scope="col">Prix total</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let item of order; let i = index">
+          <td>{{i}}</td>
+          <td>{{item.article.name}}</td>
+          <td>{{item.article.reference}}</td>
+          <td>
+            {{ item.quantity }}
+          </td>
+          <td>{{item.price}}</td>
+          <td>{{item.totalPrice | price}} </td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</app-layout>
+

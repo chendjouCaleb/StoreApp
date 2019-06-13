@@ -15,7 +15,6 @@ import {ArticleResolver} from './article.resolver';
 import {ArticleEditComponent} from './article-edit/article-edit.component';
 import {ArticleDeleteComponent} from './article-delete/article-delete.component';
 import {ArticleQuantityComponent} from './article-quantity/article-quantity.component';
-import {CartModule} from '../cart/cart.module';
 
 const routes: Routes = [
   // {path: '', redirectTo: 'articles/list', pathMatch: 'full'},
@@ -26,7 +25,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [BrowserModule, LayoutModule, RouterModule.forRoot(routes, {useHash: true}), NgbModalModule, CommonsModule,
-  FormsModule, ReactiveFormsModule, CartModule],
+  FormsModule, ReactiveFormsModule],
   declarations: [ ArticleListComponent, ArticleAddComponent, ArticleHomeComponent, ArticleEditComponent,
     ArticleDeleteComponent, ArticleQuantityComponent ],
   entryComponents: [ ArticleAddComponent, ArticleEditComponent, ArticleDeleteComponent, ArticleQuantityComponent ],

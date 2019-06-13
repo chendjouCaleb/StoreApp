@@ -4,7 +4,7 @@
   "main": "electron/dist/main.js",
   "scripts": {
     "electron-only": "tsc --p electron && electron .",
-    "electron": "ng build --base-href ./ && tsc --p electron && electron .",
+    "electron": "electron .",
     "rebuild": "electron-rebuild -f -w sqlite3",
     "postinstall": "install-app-deps",
     "electron-start": "ng build --base-href ./ && electron .",
@@ -29,7 +29,9 @@
     "@angular/router": "^6.0.3",
     "@everest/collections": "file:../Everest4TS/Collections",
     "@ng-bootstrap/ng-bootstrap": "^4.2.1",
+    "@types/node": "10.1.4",
     "@types/sqlite3": "^3.1.5",
+    "angular2-moment": "^1.9.0",
     "bootstrap": "^4.3.1",
     "class-validator": "^0.9.1",
     "core-js": "^2.5.4",
@@ -42,6 +44,7 @@
     "rxjs": "6.0.0",
     "sqlite3": "^4.0.8",
     "typeorm": "0.2.9",
+    "typescript-string-operations": "^1.3.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

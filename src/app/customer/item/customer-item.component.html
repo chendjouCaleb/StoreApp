@@ -1,0 +1,10 @@
+<div class="col-12 row px-0">
+  <div class="col-2 p-0">
+    <img [src]="customer?.image" alt="" class="img-fluid rounded my-2">
+  </div>
+  <div class="col-10 p-0 pl-2 m-0">
+    <div class="font-weight-bold col-12 p-0 ">{{customer.name}} {{customer.surname}}</div>
+    <div class="col-12 p-0"> <i class="mdi mdi-phone"></i> {{customer.phoneNumber | phone}}</div>
+    <div class="col-12 p-0"> <i class="mdi mdi-account-card-details"></i>  {{customer.nationalId | phone}}</div>
+  </div>
+</div>

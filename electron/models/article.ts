@@ -7,7 +7,8 @@
  */
 import {Category} from './category';
 import {IsNotEmpty, IsNumber, Matches, Min, MinLength} from 'class-validator';
-import {Column, Entity, PrimaryColumn, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {OrderItem} from './order';
 
 @Entity()
 export class Article {
@@ -63,6 +64,9 @@ export class Article {
    * Catégorie à laquelle l'stock appartient.
    */
   category: Category;
+
+  @OneToMany(type => OrderItem, orderItem => orderItem.article)
+  orderItems: OrderItem[];
 
   /**
    * Le prix d'achat total.

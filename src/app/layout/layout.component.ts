@@ -2,8 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {LayoutInstance} from './layout-instance';
 import {Cart} from '../cart/cart';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CartProcessComponent} from '../cart/process/cart-process.component';
+import {CartManageLauncher} from '../order/cart-manage/cart-manage-launcher';
 
 @Component({
   selector: 'app-layout',
@@ -14,7 +13,8 @@ export class LayoutComponent implements OnInit {
   title: string;
   visible = false;
 
-  constructor(private appTitle: Title, private _instance: LayoutInstance, public cart: Cart, public ngbModal: NgbModal) {
+  constructor(private appTitle: Title, private _instance: LayoutInstance, public cart: Cart,
+              public orderProcessLauncher: CartManageLauncher) {
     this.visible = this._instance.showSidebar;
   }
 
@@ -32,7 +32,6 @@ export class LayoutComponent implements OnInit {
   }
 
   processCart() {
-    const modalRef = this.ngbModal.open(CartProcessComponent, {size: 'lg', windowClass: 'large-modal' });
-    modalRef.componentInstance.cart = this.cart;
+    this.orderProcessLauncher.launch();
   }
 }

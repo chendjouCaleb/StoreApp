@@ -13,7 +13,7 @@ export class CustomerAddComponent implements OnInit {
   form = new CustomerForm();
 
   @Input()
-  customers: List<Customer>;
+  customers = new List<Customer>();
 
   constructor(private customerRepository: CustomerRepository, public modal: NgbActiveModal, private alertEmitter: AlertEmitter) {
 
@@ -40,7 +40,7 @@ export class CustomerAddComponent implements OnInit {
       const result = this.customerRepository.add(model);
       this.customers.add(result);
       this.alertEmitter.success('Le nouveau client a été ajouté');
-      this.modal.close();
+      this.modal.close(result);
     }
 
   }

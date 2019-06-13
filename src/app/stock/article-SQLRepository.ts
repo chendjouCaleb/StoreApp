@@ -44,7 +44,7 @@ export class ArticleSQLRepository {
     //   article.sellingPrice = item.sellingPrice;
     //   article.buyingPrice = item.buyingPrice;
     //
-    //   articles.add(article);
+    //   articles.cart-manage(article);
     // });
 
     return articles;

@@ -3,6 +3,7 @@ import {Connection, createConnection} from 'typeorm';
 import IpcMain = Electron.IpcMain;
 import {ArticleRepository} from './article-repository';
 import {Customer} from '../models/customer';
+import {Order, OrderItem, Payment} from '../models/order';
 
 export class PersistenceContext {
   private _connection: Connection;
@@ -19,7 +20,7 @@ export class PersistenceContext {
         logger: 'simple-console',
         database: './assets/database.sqlite',
 
-        entities: [Article, Customer],
+        entities: [Article, Customer, Order, OrderItem, Payment],
       });
 
     this.addListener();
@@ -28,6 +29,9 @@ export class PersistenceContext {
   addListener() {
     new ArticleRepository(this._ipcMain, this._connection.getRepository(Article), 'articles').addListener();
     new ArticleRepository(this._ipcMain, this._connection.getRepository(Customer), 'customers').addListener();
+    new ArticleRepository(this._ipcMain, this._connection.getRepository(Order), 'orders').addListener();
+    new ArticleRepository(this._ipcMain, this._connection.getRepository(OrderItem), 'orderItems').addListener();
+    new ArticleRepository(this._ipcMain, this._connection.getRepository(Payment), 'payments').addListener();
   }
 
 

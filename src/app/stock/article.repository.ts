@@ -37,7 +37,7 @@ export class ArticleRepository {
   }
 
   add(article: Article): Article {
-    const result = this._electron.ipcRenderer.sendSync('articles/add', article);
+    const result = this._electron.ipcRenderer.sendSync('articles/cart-manage', article);
     return ArticleRepository.anyToType(result);
   }
 

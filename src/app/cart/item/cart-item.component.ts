@@ -16,6 +16,7 @@ export class CartItemComponent {
     if (quantity > item.article.quantity) {
       item.quantity = item.article.quantity;
     }
+    item.article.countInCart = quantity;
     this.cart.calculate();
   }
 
