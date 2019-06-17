@@ -34,6 +34,8 @@ export class Order {
   set payment(value: number) {
     this._payment = value;
   }
+
+
 }
 
 

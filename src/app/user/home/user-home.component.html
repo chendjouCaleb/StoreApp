@@ -1,0 +1,42 @@
+<app-layout [title]="'Clients - ' + user?.name ">
+  <div class="col-12 border-bottom " style="font-size: large">
+    <button class="btn" (click)="back()">
+      <i class="mdi mdi-arrow-left mdi-24px"></i>
+    </button>
+
+    <a routerLink="/users/list">Utilisateurs</a> /
+    {{user?.name }}
+  </div>
+
+  <div class="col-12 row mt-3">
+    <div class="col-4">
+      <img [src]="user?.imageURL" alt="" class="img-fluid">
+    </div>
+    <div class="col-6">
+      <h1 class="font-weight-bold mb-0">{{user.name}}</h1>
+      <div class="col-12 px-0 mt-0 text-small">
+        Ajouté {{user.registrationDate | amCalendar}} &nbsp; &nbsp; &nbsp; <span class="badge badge-light">{{user.role}}</span>
+      </div>
+      <div class="col-12 px-0 mt-4">
+        <h5>Numéro de téléphone</h5>
+        <h4 class="font-weight-bold">{{user.phoneNumber | phone}}</h4>
+      </div>
+
+
+
+      <div class="col-12 px-0 mt-5">
+        <button class="btn btn-outline-info  mr-5" (click)="openEditPasswordModal()">
+          <i class="mdi mdi-pen"></i> Modifier le mot de passe
+        </button>
+        <button class="btn btn-outline-danger" (click)="openDeleteModal()">
+          <i class="mdi mdi-delete-forever"></i> Supprimer ce client
+        </button>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+</app-layout>

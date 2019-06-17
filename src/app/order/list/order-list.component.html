@@ -7,6 +7,7 @@
         <th>Id</th>
         <th>Prix total</th>
         <th>Paiement initial</th>
+        <th>Paiement reçu</th>
         <th>Paiement restant</th>
         <th>Client</th>
         <td></td>
@@ -14,11 +15,12 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let order of orders">
+    <tr *ngFor="let order of orders" [class.table-success]="order.paymentIsComplete">
       <td> {{order.id}}</td>
       <td>{{order.price | price}}</td>
       <td>{{order.payment | price}}</td>
-      <td>{{(order.price - order.payment) | price}}</td>
+      <td>{{order.totalPayments | price }}</td>
+      <td>{{order.remainingPayment | price}}</td>
       <td> {{order.customer?.name}} {{order.customer?.surname}} </td>
       <td>
         <a [routerLink]="['/orders', order.id, 'home']">Plus de détails</a>

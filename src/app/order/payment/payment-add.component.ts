@@ -20,6 +20,8 @@ export class PaymentAddComponent {
   addPayment() {
     const payment = new Payment(this.paymentAmount, this.order);
 
+    this.order.payments.push(payment);
+
     this._repository.add(payment);
     this._alert.success('Le paiement a été effectué!');
     this.modal.close();

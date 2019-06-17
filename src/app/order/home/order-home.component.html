@@ -1,10 +1,10 @@
 <app-layout [title]="'Commande n° ' + order.id">
   <div class="col-12 border-bottom " style="font-size: large">
-  <button class="btn" (click)="back()">
-    <i class="mdi mdi-arrow-left mdi-24px"></i>
-  </button>
+    <button class="btn" (click)="back()">
+      <i class="mdi mdi-arrow-left mdi-24px"></i>
+    </button>
 
-  <a routerLink="/orders/list">Commandes</a> /
+    <a routerLink="/orders/list">Commandes</a> /
     Commande n° {{order?.id }}
   </div>
 
@@ -13,34 +13,63 @@
     <div class="col-12 text-small mt-0 pt-0">{{order.registrationDate | amCalendar}}</div>
   </div>
 
-  <div class="col-12">
-    <div class="col-6 mt-3">
-      <h5>Client</h5>
-      <h4 class="text-info">
-        <a routerLink="/customers/{{order.customer?.id}}/home">{{order.customer?.name}} {{order.customer?.surname}}</a>
-      </h4>
+  <div class="col-12 row">
+    <div class="col-lg-4 col-md-6">
+
+        <div class="col-12 mt-3">
+          <h5>Client</h5>
+          <h5 class="text-info">
+            <a
+              routerLink="/customers/{{order.customer?.id}}/home">{{order.customer?.name}} {{order.customer?.surname}}</a>
+          </h5>
+        </div>
+
+
+        <div class="col-12 mt-4">
+          <h5>Prix de la commande</h5>
+          <h5 class="font-weight-bold text-info">{{order.price | price}}</h5>
+        </div>
+
+        <div class="col-12 mt-4">
+          <h5>Paiement Initial</h5>
+          <h5 class="font-weight-bold text-info">{{order.payment | price}}</h5>
+        </div>
+
+        <div class="col-12 mt-4">
+          <h5>Paiement Total</h5>
+          <h5 class="font-weight-bold text-info">{{order.totalPayments | price}}
+            <i class="mdi mdi-check text-success" *ngIf="order.paymentIsComplete"></i>
+          </h5>
+        </div>
+
+        <div class="col-12 mt-4">
+          <h5>Paiement Restant</h5>
+          <h5 class="font-weight-bold text-info">{{order.remainingPayment | price}}
+            <i class="mdi mdi-check text-success" *ngIf="order.paymentIsComplete"></i>
+          </h5>
+        </div>
+
     </div>
 
-
-    <div class="col-6 mt-4">
-      <h5>Prix de la commande</h5>
-      <h4 class="font-weight-bold text-info">{{order.price | price}}</h4>
+    <div class="col-lg-4 col-md-6 col-12 mt-3">
+      <div class="col-12 px-0" >
+        <h3>Paiements reçus</h3>
+        <div class="col-12 px-0 mt-3" *ngFor="let payment of order.payments">
+          <h5 class="mb-0 pb-0">{{payment.amount | price}} </h5>
+          <div class="text-small mt-0 pt-0">{{payment.registrationDate | amCalendar}}</div>
+        </div>
+      </div>
+      <div class="col-8 px-0 mt-3" *ngIf="!order.paymentIsComplete">
+        <label for="paymentAmount" class="font-weight-bold">Nouveau paiement</label>
+        <div class="input-group">
+          <input id="paymentAmount" name="paymentAmount" class="form-control" type="number" [(ngModel)]="paymentAmount">
+          <button class="btn btn-info input-group-btn ml-1" (click)="paymentModal()"
+                  [disabled]="order.totalPayments >= order.price || paymentAmount <= 0 || paymentAmount > order.remainingPayment">
+            <i class="mdi mdi-plus"></i></button>
+        </div>
+      </div>
     </div>
 
-    <div class="col-6 mt-4">
-      <h5>Paiement Initial</h5>
-      <h4 class="font-weight-bold text-info">{{order.payment | price}}</h4>
-    </div>
-  </div>
-
-  <div class="col-lg-6 col-md-6 col-12 mt-3">
-    <label for="paymentAmount" class="font-weight-bold">Nouveau paiement</label>
-
-    <div class="input-group">
-      <input id="paymentAmount" name="paymentAmount" class="form-control" type="number" [(ngModel)]="paymentAmount">
-      <button class="btn btn-info input-group-btn ml-1" (click)="paymentModal()" [disabled]="paymentAmount <= 0">
-        <i class="mdi mdi-plus"></i></button>
-    </div>
   </div>
 
 

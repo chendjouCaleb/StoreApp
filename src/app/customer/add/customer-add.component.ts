@@ -28,7 +28,7 @@ export class CustomerAddComponent implements OnInit {
 
     this.form.getControl('nationalId').valueChanges.subscribe(value => {
       if (this.customerRepository.find({nationalId: value})) {
-        this.form.addError('name', 'Ce numéro d\'indentité est déjà utilisé par un client');
+        this.form.addError('nationalId', 'Ce numéro d\'indentité est déjà utilisé par un client');
       }
     });
   }

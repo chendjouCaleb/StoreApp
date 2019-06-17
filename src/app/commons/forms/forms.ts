@@ -114,4 +114,8 @@ export class EvFormControl extends FormControl {
       this.setErrors({'message': errors[this.name]});
     }
   }
+
+  addError(message: string) {
+    this.setErrors({'message': message});
+  }
 }

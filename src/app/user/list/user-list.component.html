@@ -1,3 +1,39 @@
 <app-layout [title]="'Utilisateurs'">
-  <h3>Utilisateur</h3> ggggg596fff
+  <div class="col-12 row py-3 border-bottom mx-0 px-0">
+    <h2 class="col-6">Utilisateurs {{users?.size}}</h2>
+    <div class="col-6 text-right ">
+      <button class="btn btn-info" (click)="openAddUserModal()">
+        <i class="mdi mdi-plus"></i> Ajouter un utilisateur
+      </button>
+    </div>
+  </div>
+
+
+  <div class="col-12">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom & prénom</th>
+        <th scope="col">Numéro de téléphone</th>
+        <th scope="col">Role</th>
+        <th scope="col">Ajouté le</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.phoneNumber | phone}}</td>
+        <td><span class="badge badge-light">{{user.role}}</span></td>
+        <td>{{user.registrationDate | amCalendar}}</td>
+        <td>
+          <button class="btn btn-outline-info btn-sm" [routerLink]="['/users', user.id, 'home']">Voir</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </app-layout>

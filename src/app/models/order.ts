@@ -95,6 +95,20 @@ export class Order extends List<OrderItem> {
     return this.toArray();
   }
 
+  get totalPayments() {
+    let payment = 0;
+    this.payments.forEach(p => payment += p.amount);
+
+    return payment + this.payment;
+  }
+
+  get paymentIsComplete() {
+    return this.totalPayments === this.price;
+  }
+
+  get remainingPayment() {
+    return this.price - this.totalPayments;
+  }
 
 }
 
@@ -140,6 +154,7 @@ export class OrderItem {
 
 
 export class Payment {
+  id: number;
   registrationDate: Date;
 
   constructor(amount: number, order: Order) {
@@ -151,6 +166,9 @@ export class Payment {
   order: Order;
 
   static anyToType(value: any): Payment {
-    return new Payment(value.amount, value.order);
+    const payment = new Payment(value.amount, value.order);
+    payment.id = value.id;
+    payment.registrationDate = value.registrationDate;
+    return payment;
   }
 }

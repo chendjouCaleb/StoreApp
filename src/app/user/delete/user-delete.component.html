@@ -1,0 +1,9 @@
+<div class="col text-center">
+
+  <h5 class="text-danger mt-3"> Voulez vous supprimer l'utilisateur' {{user.name }}</h5>
+
+  <div class="py-3 ">
+    <button class="btn btn-default" (click)="modal.close()">Annuler</button>
+    <button class="btn btn-danger ml-3"  (click)="deleteUser()"><i class="mdi mdi-delete-forever"></i> Supprimer</button>
+  </div>
+</div>

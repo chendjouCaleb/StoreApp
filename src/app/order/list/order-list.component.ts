@@ -10,6 +10,6 @@ export class OrderListComponent {
   orders = new List<Order>();
 
   constructor(private _repository: OrderRepository) {
-    this.orders = this._repository.list({}, ['customer', 'orderItems', 'orderItems.article']);
+    this.orders = this._repository.list({}, ['customer', 'orderItems', 'payments', 'orderItems.article']);
   }
 }
