@@ -7,11 +7,14 @@ import {StateBadgeDirective} from './state-badge.directive';
 import {PricePipe} from './pipe/price.pipe';
 import {CurrentItems} from './current-items.service';
 import {PhoneNumberPipe} from './pipe/phone-number.pipe';
+import {OrderTabComponent} from './tab/order-tab.component';
+import {RouterModule} from '@angular/router';
+import {MomentModule} from 'angular2-moment';
 
 @NgModule({
-  imports: [ BrowserModule, CommonModule],
+  imports: [ BrowserModule, RouterModule, CommonModule, MomentModule ],
     providers: [ AlertEmitter, CurrentItems ],
-    declarations: [ ControlErrorComponent, StateBadgeDirective, PricePipe, PhoneNumberPipe ],
-  exports: [ ControlErrorComponent, StateBadgeDirective, PricePipe, PhoneNumberPipe ]
+    declarations: [ ControlErrorComponent, StateBadgeDirective, PricePipe, PhoneNumberPipe, OrderTabComponent ],
+  exports: [ ControlErrorComponent, StateBadgeDirective, PricePipe, PhoneNumberPipe, OrderTabComponent ]
 })
 export class CommonsModule {}

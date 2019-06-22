@@ -42,8 +42,8 @@ export abstract class Repository<T> {
     return this._electron.ipcRenderer.sendSync(`${this.resource}/delete`, item);
   }
 
-  find(criteria: {}): T {
-    const result = this._electron.ipcRenderer.sendSync(`${this.resource}/find`, criteria);
+  find(criteria: {}, relations = []): T {
+    const result = this._electron.ipcRenderer.sendSync(`${this.resource}/find`, criteria, relations);
     if (result.length === 0) {
       return null;
     }

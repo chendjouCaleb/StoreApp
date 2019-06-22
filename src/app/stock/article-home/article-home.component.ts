@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Article} from '../../models/article';
 import {CurrentItems} from '../../commons/current-items.service';
-import {ArticleAddComponent} from '../article-add/article-add.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ArticleEditComponent} from '../article-edit/article-edit.component';
 import {ArticleDeleteComponent} from '../article-delete/article-delete.component';

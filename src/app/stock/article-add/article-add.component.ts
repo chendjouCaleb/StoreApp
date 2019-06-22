@@ -20,15 +20,17 @@ export class ArticleAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.getControl('reference').valueChanges.subscribe(value => {
+    const reference = this.form.getControl('reference');
+    const name = this.form.getControl('name');
+    reference.valueChanges.subscribe(value => {
       if (this.articleRepository.findByReference(value)) {
-        this.form.addError('reference', 'Cette reference est déjà utilisé par un article');
+        reference.addError('Cette reference est déjà utilisé par un article');
       }
     });
 
-    this.form.getControl('name').valueChanges.subscribe(value => {
+    name.valueChanges.subscribe(value => {
       if (this.articleRepository.findByName(value)) {
-        this.form.addError('name', 'Ce nom est déjà utilisé par un article');
+        name.addError('Ce nom est déjà utilisé par un article');
       }
     });
   }

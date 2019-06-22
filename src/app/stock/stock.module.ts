@@ -15,6 +15,7 @@ import {ArticleResolver} from './article.resolver';
 import {ArticleEditComponent} from './article-edit/article-edit.component';
 import {ArticleDeleteComponent} from './article-delete/article-delete.component';
 import {ArticleQuantityComponent} from './article-quantity/article-quantity.component';
+import {MomentModule} from 'angular2-moment';
 
 const routes: Routes = [
   // {path: '', redirectTo: 'articles/list', pathMatch: 'full'},
@@ -25,7 +26,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [BrowserModule, LayoutModule, RouterModule.forRoot(routes, {useHash: true}), NgbModalModule, CommonsModule,
-  FormsModule, ReactiveFormsModule],
+  FormsModule, ReactiveFormsModule, MomentModule],
   declarations: [ ArticleListComponent, ArticleAddComponent, ArticleHomeComponent, ArticleEditComponent,
     ArticleDeleteComponent, ArticleQuantityComponent ],
   entryComponents: [ ArticleAddComponent, ArticleEditComponent, ArticleDeleteComponent, ArticleQuantityComponent ],

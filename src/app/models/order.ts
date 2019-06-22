@@ -15,7 +15,7 @@ export class Order extends List<OrderItem> {
   public payments: Payment[] = [];
 
   static anyToType(value: any): Order {
-    console.log(value);
+
     const order = new Order();
     order._payment = value._payment;
 
@@ -141,12 +141,19 @@ export class OrderItem {
   }
 
   static anyToType(value: any): OrderItem {
+    if (!value) {
+      return null;
+    }
     const item = new OrderItem();
     item._quantity = value._quantity;
     item.price = value.price;
     item.id = value.id;
     if (value.article) {
       item.article = Article.anyToType(value.article);
+    }
+
+    if (value.order) {
+      item.order = Order.anyToType(value.order);
     }
     return item;
   }

@@ -3,6 +3,10 @@ import {Title} from '@angular/platform-browser';
 import {LayoutInstance} from './layout-instance';
 import {Cart} from '../cart/cart';
 import {CartManageLauncher} from '../order/cart-manage/cart-manage-launcher';
+import {AuthenticationService} from '../authentication/authentication-service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from '../authentication/login/login.component';
+import {AlertEmitter} from '../commons/alert.emitter';
 
 @Component({
   selector: 'app-layout',
@@ -12,9 +16,12 @@ export class LayoutComponent implements OnInit {
   @Input()
   title: string;
   visible = false;
+  username: string;
 
   constructor(private appTitle: Title, private _instance: LayoutInstance, public cart: Cart,
-              public orderProcessLauncher: CartManageLauncher) {
+              public orderProcessLauncher: CartManageLauncher, public auth: AuthenticationService,
+              private _alert: AlertEmitter,
+              private _ngbModal: NgbModal) {
     this.visible = this._instance.showSidebar;
   }
 
@@ -24,6 +31,7 @@ export class LayoutComponent implements OnInit {
     }
 
     this.appTitle.setTitle(this.title);
+
   }
 
   toggle() {
@@ -33,5 +41,11 @@ export class LayoutComponent implements OnInit {
 
   processCart() {
     this.orderProcessLauncher.launch();
+  }
+
+  logout() {
+    this.auth.logout();
+    this._ngbModal.open(LoginComponent);
+    this._alert.info('Vous êtes maintenant déconnecté');
   }
 }

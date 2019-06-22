@@ -7,6 +7,8 @@
  */
 import {Category} from './category';
 import {IsNotEmpty, IsNumber, Matches, Min, MinLength} from 'class-validator';
+import {List} from '@everest/collections';
+import {Order, OrderItem} from './order';
 
 
 export class Article {
@@ -66,6 +68,8 @@ export class Article {
 
   countInCart = 0;
 
+  orderItems: List<OrderItem>;
+
   /**
    * Le prix d'achat total.
    */
@@ -81,6 +85,11 @@ export class Article {
   }
 
   static anyToType(item: any): Article {
+    if (!item) {
+
+      return null;
+    }
+    console.log(item);
     const article = new Article();
     article.countInCart = 0;
     article.sellingPrice = item.sellingPrice;
@@ -89,6 +98,12 @@ export class Article {
     article.quantity = item.quantity;
     article.name = item.name;
     article.reference = item.reference;
+
+    if (item.orderItems) {
+      article.orderItems = new List();
+
+      item.orderItems.forEach(o => article.orderItems.add(OrderItem.anyToType(o)));
+    }
 
     return article;
   }

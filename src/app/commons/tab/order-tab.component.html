@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Prix total</th>
+    <th>Paiement initial</th>
+    <th>Paiement reçu</th>
+    <th>Paiement restant</th>
+    <th>Client</th>
+    <td>Date</td>
+    <td></td>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let order of orders" [class.table-success]="order.paymentIsComplete">
+    <td> {{order.id}}</td>
+    <td>{{order.price | price}}</td>
+    <td>{{order.payment | price}}</td>
+    <td>{{order.totalPayments | price }}</td>
+    <td>{{order.remainingPayment | price}}</td>
+    <td> {{order.customer?.name}} {{order.customer?.surname}} </td>
+    <td>{{order.registrationDate | amCalendar}}</td>
+    <td>
+      <a [routerLink]="['/orders', order.id, 'home']">Plus de détails</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

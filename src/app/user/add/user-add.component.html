@@ -5,13 +5,13 @@
 
     <div class="form-group">
       <label for="name">Nom et prénom</label>
-      <input id="name" name="name" class="form-control" formControlName="name">
+      <input id="name" name="name" class="form-control" formControlName="name" (blur)="checkName()">
       <app-control-error [control]="form.controls['name']"></app-control-error>
     </div>
 
     <div class="form-group">
       <label for="phoneNumber">Numéro de téléphone</label>
-      <input id="phoneNumber" name="phoneNumber" class="form-control" formControlName="phoneNumber">
+      <input id="phoneNumber" name="phoneNumber" class="form-control" formControlName="phoneNumber" (blur)="checkPhoneNumber()">
       <app-control-error [control]="form.controls['phoneNumber']"></app-control-error>
       <span class="mt-2 text-small">Le numéro sera utilisé par l'utilisateur pour s'authentifier.</span>
     </div>
@@ -24,7 +24,8 @@
 
     <div class="form-group">
       <label for="passwordMatcher">Confirmer le mot de passe</label>
-      <input id="passwordMatcher" name="passwordMatcher" class="form-control" formControlName="passwordMatcher" type="password">
+      <input id="passwordMatcher" name="passwordMatcher" class="form-control" formControlName="passwordMatcher"
+             type="password" (blur)="checkPassword()">
       <app-control-error [control]="form.controls['passwordMatcher']"></app-control-error>
     </div>
 

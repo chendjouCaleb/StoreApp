@@ -77,4 +77,31 @@
     </div>
   </div>
 
+
+  <h2>Ventes de l'article</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Commande</th>
+      <th>Quantité</th>
+      <th>Prix</th>
+      <th>Date</th>
+      <th>Client</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let item of article.orderItems">
+      <td> {{item.id}}</td>
+      <td><a *ngIf="item.order" [routerLink]="['/orders', item.order?.id, 'home']">N°{{item.order?.id}} </a></td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.price | price}}</td>
+      <td>{{item.order?.registrationDate | amCalendar }}</td>
+      <td> {{item.order?.customer?.name}} {{item.order?.customer?.surname}} </td>
+
+    </tr>
+    </tbody>
+  </table>
+
 </app-layout>

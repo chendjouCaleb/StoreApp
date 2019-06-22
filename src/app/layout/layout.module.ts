@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from '../app.component';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {LayoutComponent} from './layout.component';
 import {RouterModule} from '@angular/router';
 import {LayoutInstance} from './layout-instance';
@@ -18,6 +18,7 @@ import {CommonsModule} from '../commons/commons.module';
     BrowserModule,
     RouterModule,
     NgbDropdownModule,
+    NgbModalModule,
     CommonsModule,
     CartModule
   ],

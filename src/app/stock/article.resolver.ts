@@ -11,7 +11,8 @@ export class ArticleResolver implements Resolve<Article> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Article> | Promise<Article> | Article {
     const id = +route.paramMap.get('articleId');
 
-    const article = this._repository.find(id);
+    const article = this._repository.findById(id, ['orderItems', 'orderItems.order', 'orderItems.order.customer']);
+
     this._items.put('article', article);
     return article;
   }

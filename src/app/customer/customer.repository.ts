@@ -11,15 +11,7 @@ export class CustomerRepository extends Repository<Customer> {
   }
 
   anyToType(value: any): Customer {
-    const customer = new Customer();
-    customer.id = value.id;
-    customer.name = value.name;
-    customer.surname = value.surname;
-    customer.nationalId = value.nationalId;
-    customer.phoneNumber = value.phoneNumber;
-    customer.registrationDate = value.registrationDate;
-
-    return customer;
+    return Customer.anyToType(value);
   }
 
   get resource(): string {

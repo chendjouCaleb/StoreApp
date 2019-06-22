@@ -8,6 +8,7 @@ import {StockModule} from './stock/stock.module';
 import {UserModule} from './user/user.module';
 import {CustomerModule} from './customer/customer.module';
 import {OrderModule} from './order/order.module';
+import {AuthenticationModule} from './authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {OrderModule} from './order/order.module';
     StockModule,
     UserModule,
     CustomerModule,
-    OrderModule
+    OrderModule,
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

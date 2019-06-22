@@ -21,5 +21,6 @@ export class User {
   imageName: string;
   imageURL: string;
 
-  role = 'USER';
+  @Column('text', {nullable: true})
+  role: string;
 }

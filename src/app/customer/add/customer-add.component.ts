@@ -20,15 +20,17 @@ export class CustomerAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.getControl('phoneNumber').valueChanges.subscribe(value => {
+    const phoneNumber = this.form.getControl('phoneNumber');
+    const nationalId = this.form.getControl('nationalId');
+    phoneNumber.valueChanges.subscribe(value => {
       if (this.customerRepository.find({phoneNumber: value})) {
-        this.form.addError('phoneNumber', 'Ce numéro de téléphone est déjà utilisé par un client');
+        phoneNumber.addError('Ce numéro de téléphone est déjà utilisé par un client');
       }
     });
 
-    this.form.getControl('nationalId').valueChanges.subscribe(value => {
+    nationalId.valueChanges.subscribe(value => {
       if (this.customerRepository.find({nationalId: value})) {
-        this.form.addError('nationalId', 'Ce numéro d\'indentité est déjà utilisé par un client');
+        nationalId.addError('Ce numéro d\'indentité est déjà utilisé par un client');
       }
     });
   }

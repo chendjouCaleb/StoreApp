@@ -1,4 +1,6 @@
 import {IsNotEmpty, Matches, MinLength} from 'class-validator';
+import {List} from '@everest/collections';
+import {Order} from './order';
 
 /**
  * Entité représentant un client.
@@ -32,6 +34,8 @@ export class Customer {
 
   registrationDate = Date.now();
 
+  orders: List<Order>;
+
   static anyToType(value: any): Customer {
     const customer = new Customer();
     customer.id = value.id;
@@ -40,6 +44,13 @@ export class Customer {
     customer.nationalId = value.nationalId;
     customer.phoneNumber = value.phoneNumber;
     customer.registrationDate = value.registrationDate;
+    customer.image = 'assets/default-customer.jpg';
+
+    if (value.orders) {
+      customer.orders = new List();
+
+      value.orders.forEach(o => customer.orders.add(Order.anyToType(o)));
+    }
 
     return customer;
   }

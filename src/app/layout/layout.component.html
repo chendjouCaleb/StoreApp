@@ -13,6 +13,8 @@
       </ul>
       <div class=" my-2 my-lg-0" (click)="processCart()">
         <app-cart-bar></app-cart-bar>
+        &nbsp; <span class="font-weight-bolder text-capitalize">{{auth.connectedUser.name}}</span>
+        <button class="btn btn-danger"(click)="logout()">Déconnexion</button>
       </div>
     </div>
   </nav>

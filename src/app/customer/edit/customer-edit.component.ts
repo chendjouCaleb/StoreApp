@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {AlertEmitter} from '../../commons/alert.emitter';
-import {List} from '@everest/collections';
 import {Customer} from '../../models/customer';
 import {CustomerForm} from '../customer.form';
 import {CustomerRepository} from '../customer.repository';
@@ -22,17 +21,20 @@ export class CustomerEditComponent implements OnInit {
   ngOnInit(): void {
     this.form = new CustomerForm(this.customer);
     let used: Customer;
-    this.form.getControl('phoneNumber').valueChanges.subscribe(value => {
+    const phoneNumber = this.form.getControl('phoneNumber');
+    const nationalId = this.form.getControl('nationalId');
+
+    phoneNumber.valueChanges.subscribe(value => {
       used = this.customerRepository.find({phoneNumber: value});
       if (used && used.id !== this.customer.id) {
-        this.form.addError('phoneNumber', 'Ce numéro de téléphone est déjà utilisé par un client');
+        phoneNumber.addError('Ce numéro de téléphone est déjà utilisé par un client');
       }
     });
 
-    this.form.getControl('nationalId').valueChanges.subscribe(value => {
+    nationalId.valueChanges.subscribe(value => {
       used = this.customerRepository.find({nationalId: value});
       if (used && used.id !== this.customer.id) {
-        this.form.addError('nationalId', 'Ce numéro d\'indentité est déjà utilisé par un client');
+        nationalId.addError('Ce numéro d\'indentité est déjà utilisé par un client');
       }
     });
   }

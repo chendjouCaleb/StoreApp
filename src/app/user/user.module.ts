@@ -13,6 +13,7 @@ import {UserHomeComponent} from './home/user-home.component';
 import {UserResolver} from './user.resolver';
 import {UserDeleteComponent} from './delete/user-delete.component';
 import {UserEditPasswordComponent} from './password/user-edit-password.component';
+import {InitUserService} from './init-user.service';
 
 const routes: Routes = [
   {path: 'users/:userId/home', component: UserHomeComponent, resolve: [ UserResolver ] },
@@ -23,7 +24,7 @@ const routes: Routes = [
   imports: [ BrowserModule, LayoutModule, CommonsModule, FormsModule, ReactiveFormsModule, MomentModule,
     NgbModalModule, RouterModule.forRoot(routes, {useHash: true}) ],
   declarations: [ UserListComponent, UserAddComponent, UserHomeComponent, UserDeleteComponent, UserEditPasswordComponent ],
-  providers: [ UserRepository, UserResolver ],
+  providers: [ UserRepository, UserResolver, InitUserService ],
   entryComponents: [ UserAddComponent, UserDeleteComponent, UserEditPasswordComponent ]
 })
 export class UserModule {

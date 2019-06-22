@@ -25,18 +25,19 @@
       </div>
 
       <div class="col-12 px-0 mt-5">
-        <button class="btn btn-outline-info  mr-5" (click)="openEditModal()">
+        <button class="btn btn-outline-info" (click)="openEditModal()">
           <i class="mdi mdi-pen"></i> Modifier ce client
         </button>
-        <button class="btn btn-outline-danger" (click)="openDeleteModal()">
+        <button class="btn btn-outline-danger ml-3" (click)="openDeleteModal()">
           <i class="mdi mdi-delete-forever"></i> Supprimer ce client
         </button>
       </div>
 
-
-
-
     </div>
   </div>
+
+  <h2 class="my-3">Achats du clients</h2>
+
+  <app-order-tab [orders]="orders"></app-order-tab>
 
 </app-layout>

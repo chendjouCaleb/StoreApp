@@ -11,7 +11,7 @@ export class CustomerResolver implements Resolve<Customer> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Customer> | Promise<Customer> | Customer {
     const id = +route.paramMap.get('customerId');
 
-    const customer = this._repository.findById(id);
+    const customer = this._repository.findById(id, ['orders', 'orders.customer']);
     this._items.put('customer', customer);
     return customer;
   }

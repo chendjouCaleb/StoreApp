@@ -4,20 +4,12 @@ import {Subject, ReplaySubject} from 'rxjs';
 
 
 export class EvFormGroup<T> extends FormGroup {
-  protected errorMessages: { [index: string]: any } = {};
-  onValidation = new ReplaySubject<any>();
 
   constructor(controls: any) {
     super(controls);
 
-    this.errorMessages = {};
-
     this.valueChanges.subscribe(() => {
       this.doValidation();
-    });
-
-    this.onValidation.subscribe(errors => {
-      this.addMessageErrors(errors);
     });
 
     this.doValidation();
@@ -46,27 +38,15 @@ export class EvFormGroup<T> extends FormGroup {
     });
   }
 
-  resetErrors() {
-    this.errorMessages = {};
-  }
-
   doValidation() {
-    const errors = {};
+
     const result = validateSync(this.getModel());
 
     result.forEach(error => {
-      errors[error.property] = Object.keys(error.constraints).map(key => error.constraints[key]);
+      const control = this.getControl(error.property);
+      Object.values(error.constraints).forEach(m => control.addError(m));
     });
 
-    this.onValidation.next(errors);
-  }
-
-  addError(key: string, message: string) {
-    if (!this.errorMessages[key]) {
-      this.errorMessages[key] = [];
-    }
-    this.errorMessages[key].push(message);
-    this.addMessageErrors(this.errorMessages);
   }
 }
 
@@ -81,34 +61,6 @@ export class EvFormControl extends FormControl {
     this.name = name;
   }
 
-  getErrorMessages() {
-    const messages: string[] = [];
-
-    if (this.errors) {
-      // tslint:disable-next-line:forin
-      for (const errorName in this.errors) {
-        switch (errorName) {
-          case 'required':
-            messages.push(`${this.label} doit etre renseigné(e)`);
-            break;
-          case 'minlength':
-            messages.push(`Votre ${this.label} doit avoir au moins ${this.errors['minlength'].requiredLength} charactères`);
-            break;
-          case 'maxlength':
-            messages.push(`Votre ${this.label} doit avoir au moins ${this.errors['maxlength'].requiredLength} charactères`);
-            break;
-          case 'pattern':
-            messages.push(`Le champ ${this.label} contient des charactères illégaux`);
-            break;
-          case 'message':
-            messages.push(this.errors['message']);
-            break;
-        }
-      }
-    }
-    return messages;
-  }
-
   addMessageErrors(errors) {
     if (errors[this.name]) {
       this.setErrors({'message': errors[this.name]});
@@ -116,6 +68,11 @@ export class EvFormControl extends FormControl {
   }
 
   addError(message: string) {
-    this.setErrors({'message': message});
+    if (!this.errors || !this.errors.message) {
+      this.setErrors({'message': []});
+    }
+    if (this.errors.message.indexOf(message) < 0) {
+      this.errors.message.push(message);
+    }
   }
 }
