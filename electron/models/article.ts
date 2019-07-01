@@ -9,13 +9,14 @@ import {Category} from './category';
 import {IsNotEmpty, IsNumber, Matches, Min, MinLength} from 'class-validator';
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {OrderItem} from './order';
+import {ReceptionItem} from './reception';
 
 @Entity()
 export class Article {
   @PrimaryGeneratedColumn()
   id: number;
   /**
-   * Le nom de l'stock.
+   * Le nom de l'article en stock.
    */
   @Column()
   @IsNotEmpty()
@@ -67,6 +68,9 @@ export class Article {
 
   @OneToMany(type => OrderItem, orderItem => orderItem.article)
   orderItems: OrderItem[];
+
+  @OneToMany(type => ReceptionItem, receptionItem => receptionItem.article)
+  receptionItems: ReceptionItem[];
 
   /**
    * Le prix d'achat total.

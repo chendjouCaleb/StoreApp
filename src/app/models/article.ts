@@ -86,10 +86,8 @@ export class Article {
 
   static anyToType(item: any): Article {
     if (!item) {
-
       return null;
     }
-    console.log(item);
     const article = new Article();
     article.countInCart = 0;
     article.sellingPrice = item.sellingPrice;

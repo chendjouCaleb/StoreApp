@@ -7,6 +7,7 @@ import {Article} from '../../models/article';
 import {List} from '@everest/collections';
 import {StockSummary} from '../../models/stock-summary';
 import {Cart} from '../../cart/cart';
+import {ReceptionAddComponent} from '../reception/reception-add.component';
 
 @Component({
   templateUrl: 'article-list.component.html'
@@ -32,6 +33,11 @@ export class ArticleListComponent {
 
   openAddArticleModal() {
     const modalRef = this.ngbModal.open(ArticleAddComponent, {backdrop: 'static'});
+    modalRef.componentInstance.articles = this.articles;
+  }
+
+  openReceptionModal() {
+    const modalRef = this.ngbModal.open(ReceptionAddComponent, {backdrop: 'static', size: 'lg'});
     modalRef.componentInstance.articles = this.articles;
   }
 

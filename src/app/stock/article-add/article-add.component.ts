@@ -40,9 +40,12 @@ export class ArticleAddComponent implements OnInit {
 
     if (this.form.valid) {
       const result = this.articleRepository.add(model);
-      this.articles.insert(0, result);
+      if (this.articles) {
+        this.articles.insert(0, result);
+      }
+
       this.alertEmitter.info('L\'article a été ajouté');
-      this.modal.close();
+      this.modal.close(result);
     }
 
   }

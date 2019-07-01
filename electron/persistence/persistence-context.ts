@@ -5,6 +5,7 @@ import {ArticleRepository} from './article-repository';
 import {Customer} from '../models/customer';
 import {Order, OrderItem, Payment} from '../models/order';
 import {User} from '../models/user.model';
+import {Reception, ReceptionItem} from '../models/reception';
 
 export class PersistenceContext {
   private _connection: Connection;
@@ -21,7 +22,7 @@ export class PersistenceContext {
         logger: 'simple-console',
         database: './assets/database.sqlite',
 
-        entities: [User, Article, Customer, Order, OrderItem, Payment],
+        entities: [User, Article, Customer, Order, OrderItem, Payment, Reception, ReceptionItem],
       });
 
     this.addListener();
@@ -34,6 +35,8 @@ export class PersistenceContext {
     new ArticleRepository(this._ipcMain, this._connection.getRepository(OrderItem), 'orderItems').addListener();
     new ArticleRepository(this._ipcMain, this._connection.getRepository(Payment), 'payments').addListener();
     new ArticleRepository(this._ipcMain, this._connection.getRepository(User), 'users').addListener();
+    new ArticleRepository(this._ipcMain, this._connection.getRepository(Reception), 'receptions').addListener();
+    new ArticleRepository(this._ipcMain, this._connection.getRepository(ReceptionItem), 'receptionItems').addListener();
   }
 
 

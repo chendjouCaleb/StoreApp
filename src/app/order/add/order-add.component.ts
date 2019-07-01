@@ -21,23 +21,17 @@ export class OrderAddComponent implements OnInit {
               private _orderItemRepository: OrderItemRepository, private _articleRepository: ArticleRepository) {
   }
 
-  ngOnInit(): void {
-    console.log(this.order);
-  }
+  ngOnInit(): void { }
 
   process() {
 
     const order = this._repository.add(this.order);
 
-    console.log(order);
-
     this.order.forEach(item => {
       item.article.quantity -= item.quantity;
       item.order = order;
-      console.log(item);
 
       this._orderItemRepository.add(item);
-      console.log(item);
       this._articleRepository.update(item.article);
     });
 

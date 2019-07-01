@@ -37,3 +37,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/StoreApp-win32-x64
+/myApp-win32-x64
+/app-win32-x64

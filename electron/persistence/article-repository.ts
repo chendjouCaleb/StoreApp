@@ -1,7 +1,5 @@
 import {ipcMain, IpcMain} from 'electron';
 import {Repository} from 'typeorm';
-import {Article} from '../models/article';
-import {cr} from '@angular/core/src/render3';
 
 export class ArticleRepository<T> {
   constructor(private _ipc: IpcMain, private _repository: Repository<T>, private _resource: string) {  }
