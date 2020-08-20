@@ -32,7 +32,7 @@
     "@types/node": "10.1.4",
     "@types/sqlite3": "^3.1.5",
     "angular2-moment": "^1.9.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bootstrap": "^4.3.1",
     "class-validator": "^0.9.1",
     "core-js": "^2.5.4",
